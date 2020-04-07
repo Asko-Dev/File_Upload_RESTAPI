@@ -80,7 +80,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FileUpload
-        fields = ('id', 'name', 'date_uploaded', 'file', 'tag',
+        fields = ('id', 'user' 'name', 'date_uploaded', 'file', 'tag',
                   'visibility', 'description')
         read_only_fields = ('id', 'date_uploaded',)
 
