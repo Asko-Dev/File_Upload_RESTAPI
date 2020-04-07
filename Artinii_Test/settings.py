@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY2')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE2') == TRUE)
+DEBUG = (os.environ.get('DEBUG_VALUE2') == 'True')
 
 ALLOWED_HOSTS = ['asko-fileupload.herokuapp.com']
 
