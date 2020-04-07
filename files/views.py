@@ -73,7 +73,7 @@ class FileUploadViewSet(viewsets.ModelViewSet):
         if visibility:
             queryset = queryset.filter(visibility=visibility)
 
-        return queryset.filter(user=self.request.user)
+        return queryset.filter(user=self.request.user).order_by('-id')
 
     def get_serializer_class(self):
         """Return appropriate serializer class"""
@@ -106,4 +106,4 @@ class FileUploadPublicViewset(viewsets.ModelViewSet):
             tag_ids = self._params_to_ints(tags)
             queryset = queryset.filter(tag__id__in=tag_ids)
 
-        return queryset.filter(visibility='PUB')
+        return queryset.filter(visibility='PUB').order_by('-id')

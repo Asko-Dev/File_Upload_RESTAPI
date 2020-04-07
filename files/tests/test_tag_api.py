@@ -74,7 +74,6 @@ class PrivateTagApi(TestCase):
 
         res = self.client.get(TAG_URL)
 
-        serializer1 = TagSerializer(tag1)
         serializer2 = TagSerializer(tag2)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)

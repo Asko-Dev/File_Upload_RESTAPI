@@ -68,6 +68,7 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = ('id', 'name')
         read_only_fields = ('id',)
+        extra_kwargs = {'name': {'min_length': 4}}
 
 
 class FileUploadSerializer(serializers.ModelSerializer):

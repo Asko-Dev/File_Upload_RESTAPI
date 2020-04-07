@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
 
@@ -32,7 +33,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(max_length=55)
+    name = models.CharField(max_length=55, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     is_staff = models.BooleanField(default=False)
 
@@ -47,8 +48,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Tag(models.Model):
     """Tag to assign to file upload"""
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    REQUIRED_FIELDS = ('name',)
 
     def __str__(self):
         return self.name
@@ -56,10 +59,12 @@ class Tag(models.Model):
 
 # Validation function for file upload
 def validate_file_extension(value):
-    ext = os.path.splitext(value.name)[1]
+    ext = os.path.splitext(value.name)[-1]
     valid_extensions = ['.pdf', '.doc', '.docx', '.png', '.jpg', '.jpeg']
     if not ext.lower() in valid_extensions:
-        raise ValidationError(u'File format not supported!')
+        raise ValidationError(
+            'Unsupported file format!\
+ Supported: .pdf, .doc, .docx, .png, .jpg, .jpeg')
 
 
 class FileUpload(models.Model):
@@ -87,3 +92,8 @@ class FileUpload(models.Model):
         upload_to='user_files',
         validators=[validate_file_extension]
     )
+
+    REQUIRED_FIELDS = ('name', 'description', 'visibility', 'file',)
+
+    def __str__(self):
+        return FileUpload.name

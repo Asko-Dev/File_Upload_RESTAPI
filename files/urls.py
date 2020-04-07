@@ -10,7 +10,7 @@ router = DefaultRouter()
 router.register('tag', views.TagViewSet)
 router.register('file-upload', views.FileUploadViewSet)
 router.register(
-    'public-files',
+    'public-uploads',
     views.FileUploadPublicViewset,
     basename='public'
 )
