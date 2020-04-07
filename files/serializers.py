@@ -77,12 +77,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
         many=True,
         queryset=Tag.objects.all()
     )
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = FileUpload
         fields = ('id', 'user', 'name', 'date_uploaded', 'file', 'tag',
                   'visibility', 'description')
-        read_only_fields = ('id', 'date_uploaded',)
+        read_only_fields = ('id', 'user', 'date_uploaded',)
 
 
 class FileUploadDetailSerializer(FileUploadSerializer):
