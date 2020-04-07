@@ -80,7 +80,7 @@ class FileUpload(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
     date_uploaded = models.DateTimeField(auto_now=True)
     description = models.TextField(max_length=500)
     tag = models.ManyToManyField('Tag')
