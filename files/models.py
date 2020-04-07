@@ -1,4 +1,5 @@
 import os
+import hashlib
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
@@ -92,8 +93,21 @@ class FileUpload(models.Model):
         upload_to='user_files',
         validators=[validate_file_extension]
     )
+    sha512_hash = models.CharField(max_length=100, default='Hash')
 
     REQUIRED_FIELDS = ('name', 'description', 'visibility', 'file',)
 
     def __str__(self):
-        return FileUpload.name
+        return (f'{self.user.name} - {self.name}')
+
+    def save(self, *args, **kwargs):
+        """Adding SHA-512 hash"""
+        self.sha512_hash = self._hash_generator(self.file)
+        super().save(*args, **kwargs)
+
+    # hash generation for file upload
+    def _hash_generator(self, file):
+        sha512_hash = hashlib.sha512()
+        for block in iter(lambda: file.read(4096), b""):
+            sha512_hash.update(block)
+        return sha512_hash.hexdigest()
