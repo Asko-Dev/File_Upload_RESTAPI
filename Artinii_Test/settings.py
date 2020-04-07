@@ -26,7 +26,7 @@ SECRET_KEY = '#q&xmkt1+rr3l_2*a5slolj-kma9^x2*-d=k2ap_u$l6=z$n62'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['asko-fileupload.herokuapp.com']
 
 
 # Application definition

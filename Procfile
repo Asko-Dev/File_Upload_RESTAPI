@@ -1,1 +1,1 @@
-web: gunicorn files.wsgi
+web: gunicorn Artinii_Test.wsgi
