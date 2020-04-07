@@ -80,7 +80,7 @@ class FileUpload(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
     date_uploaded = models.DateTimeField(auto_now=True)
     description = models.TextField(max_length=500)
     tag = models.ManyToManyField('Tag')
@@ -94,7 +94,7 @@ class FileUpload(models.Model):
         upload_to='user-files',
         validators=[validate_file_extension]
     )
-    sha512_file_hash = models.CharField(max_length=100, default='Hash')
+    sha512_file_hash = models.CharField(max_length=200, default='Hash')
 
     REQUIRED_FIELDS = ('name', 'description', 'visibility', 'file',)
 
