@@ -16,7 +16,8 @@
     - Public files of all users displayed
 - Filtering based on tags and privacy settings for both Private and Public API
 
-#DEPLOYED TO HEROKU (Using AWS S3 Bucket for storage)
+DEPLOYED TO HEROKU (Using AWS S3 Bucket for storage)
+
 ROOT URL: https://asko-fileupload.herokuapp.com
 
 URL endpoints:
