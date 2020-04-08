@@ -1,5 +1,3 @@
-#FILE-UPLOAD-API
-
 An API endpoint for file upload
 
 - User Registration
@@ -28,10 +26,10 @@ URL endpoints:
 - /api/user-token/                                        
 - /api/user-me/                                           
 - /api/tag/                                               
-- /api/tag/<pk>                                           
+- /api/tag/id                                        
 - /api/file-upload/                                       
-- /api/file-upload/<pk>                                   
-- /api/file-upload/?tag=<pk>&visibility='PRV'/'PUB'       
+- /api/file-upload/id                            
+- /api/file-upload/?tag=id&visibility='PRV'/'PUB'       
 - /api/public-uploads/                                    
-- /api/public-uploads/<pk>                                
-- /api/public-uploads/?tag=<pk>&visibility='PRV'/'PUB'    
+- /api/public-uploads/id                       
+- /api/public-uploads/?tag=id&visibility='PRV'/'PUB'    
